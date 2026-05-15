@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'login_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'login_event.dart';
+import 'login_event.dart';
 
-// Login states
-abstract class LgoinState {}
 
-class LoginInitialState extends LgoinState {}
+abstract class LoginState{}
 
-class LoginLoadingState extends LgoinState {}
+class LoginIniatialize extends LoginState{}
+class LoginLoading extends LoginState {}
+class LoginSuccess extends LoginState {}
+class Loginfailure extends LoginState {
+    final String error;
 
-class LoginSuccessState extends LgoinState {}
-
-class LoginError extends LgoinState {
-  final String message;
-  LoginError({required this.message});
+    Loginfailure(this.error);
 }

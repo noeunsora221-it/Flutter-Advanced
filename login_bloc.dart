@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'login_event.dart';
+import 'main.dart';
 import 'login_state.dart';
-import 'login_bloc.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LgoinState> {
-  LoginBloc() : super(LoginInitialState()) {
+class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  LoginBloc() : super(LoginIniatialize()) {
     on<LoginButtonPressed>((event, emit) async {
-      // async used make api calling  for await response
-      // Loading Button states pressed
-      emit(LoginLoadingState());
+      // Code will be handler
+      emit(LoginLoading());
 
-      // API Delays
       await Future.delayed(Duration(seconds: 3));
 
-      // API Response
-      // Checking for validate password and emails
-
-      if (event.username == "virakun@123" && event.password == "virak123") {
-        emit(LoginSuccessState());
+      // checking username and password
+      if (event.username == "sophalsam04@gmail.com" &&
+          event.password == "sophal555" &&
+          event.department == "mobileapps") {
+        emit(LoginSuccess());
       } else {
-        emit(LoginError(message: "Invalid username and password"));
+        emit(Loginfailure("Succesfully...!"));
       }
     });
   }
