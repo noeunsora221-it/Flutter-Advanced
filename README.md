@@ -1,4 +1,4 @@
-# bloc_apps
+# getx_apps
 
 A new Flutter project.
 
