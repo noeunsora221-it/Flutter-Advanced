@@ -1,4 +1,4 @@
-# getx_apps
+# get_x
 
 A new Flutter project.
 
