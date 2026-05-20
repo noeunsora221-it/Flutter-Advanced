@@ -1,46 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'api_service.dart';
-import 'post_controller.dart';
-import 'post_model.dart';
-import 'post_controller.dart';
+import 'package:provider_example/counter_provider.dart';
+import 'counter_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'counter_provider.dart';
+import 'package:provider/provider.dart';
+import 'counter_provider.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
-  
   Widget build(BuildContext context) {
-    final PostController controller = PostController();
+    final CounterProvider provider = Provider.of<CounterProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "GETX API",
+          "Provider in flutter",
           style: TextStyle(
-            fontSize: 35,
+            fontSize: 30,
             color: Colors.red,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
 
-      body: Obx(() {
-        // checking validated
-        if (controller.isloading.value) {
-          return Center(child: CircularProgressIndicator());
-        }
-
-        return ListView.builder(
-          itemCount: controller.postList.length,
-          itemBuilder: (context, index) {
-            final post = controller.postList[index];
-            return ListTile(
-              title: Text(post.title),
-              subtitle: Text("ID : ${post.id}"),
-            );
-          },
-        );
-      }),
+      body: Center(
+        child: Column(
+          children: [
+            Text(
+              "${provider.count}",
+              style: TextStyle(fontSize: 34, color: Colors.red),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          provider.count;
+        },
+        child: Icon(Icons.people_outline_sharp, size: 40),
+      ),
     );
   }
 }

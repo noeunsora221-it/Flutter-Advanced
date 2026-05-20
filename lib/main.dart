@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get_x1/home_screen.dart';
-import 'home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_example/counter_provider.dart';
+import 'package:provider_example/home_screen.dart';
+import 'counter_provider.dart';
 
 void main(List<String> args) {
-  runApp(const App());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CounterProvider(),
+      child: App(),
+    ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -12,9 +18,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
